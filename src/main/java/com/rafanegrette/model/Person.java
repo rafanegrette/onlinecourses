@@ -10,6 +10,7 @@ import lombok.Data;
 
 
 @Data
+@AllArgsConstructor
 @Entity
 public class Person {
 	
@@ -20,15 +21,6 @@ public class Person {
 	private String firstName;
 	private String lastName;
 	private String email;
-	
-	public Person(Long id, String userName, String firstName, String lastName, String email) {
-		super();
-		this.id = id;
-		this.userName = userName;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-	}
 	
 	
 }
