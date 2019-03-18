@@ -1,14 +1,14 @@
-package com.rafanegrette.service.impl;
+package com.rafanegrette.services.jpa;
 
 import java.util.Set;
 
 import com.rafanegrette.model.University;
 import com.rafanegrette.model.User;
-import com.rafanegrette.service.UniversityService;
+import com.rafanegrette.services.UniversityService;
 
-public class UniversityServiceImpl implements UniversityService {
+public class UniversityServiceJpa implements UniversityService {
 
-	public University find(Long id) {
+	public University findById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

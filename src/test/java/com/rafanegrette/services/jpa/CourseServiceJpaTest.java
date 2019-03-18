@@ -1,20 +1,10 @@
-package com.rafanegrette.service.impl;
+package com.rafanegrette.services.jpa;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UniversityServiceImplTest {
-
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-	}
-
-	@BeforeEach
-	void setUp() throws Exception {
-	}
+class CourseServiceJpaTest {
 
 	@Test
 	void testFind() {
@@ -42,7 +32,7 @@ class UniversityServiceImplTest {
 	}
 
 	@Test
-	void testFindByPresidentId() {
+	void testFindByUniversityId() {
 		fail("Not yet implemented");
 	}
 

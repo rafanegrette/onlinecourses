@@ -1,4 +1,4 @@
-package com.rafanegrette.service.impl;
+package com.rafanegrette.services.jpa;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserServiceImplTest {
+class UniversityServiceJpaTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -42,12 +42,12 @@ class UserServiceImplTest {
 	}
 
 	@Test
-	void testFindByCourseId() {
+	void testFindByPresidentId() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testFindByUniversityId() {
+	void testFindByUserId() {
 		fail("Not yet implemented");
 	}
 

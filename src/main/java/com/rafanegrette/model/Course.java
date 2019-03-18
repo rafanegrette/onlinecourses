@@ -12,9 +12,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.rafanegrette.model.User.UserBuilder;
+
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 @Entity
 public class Course {	
 	

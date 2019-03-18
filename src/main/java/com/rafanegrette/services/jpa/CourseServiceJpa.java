@@ -1,13 +1,13 @@
-package com.rafanegrette.service.impl;
+package com.rafanegrette.services.jpa;
 
 import java.util.Set;
 
 import com.rafanegrette.model.Course;
-import com.rafanegrette.service.CourseService;
+import com.rafanegrette.services.CourseService;
 
-public class CourseServiceImpl implements CourseService {
+public class CourseServiceJpa implements CourseService {
 
-	public Course find(Long id) {
+	public Course findById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

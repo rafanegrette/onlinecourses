@@ -1,4 +1,4 @@
-package com.rafanegrette.service;
+package com.rafanegrette.services;
 
 import java.util.Set;
 
