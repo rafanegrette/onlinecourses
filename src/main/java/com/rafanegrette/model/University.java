@@ -1,5 +1,6 @@
 package com.rafanegrette.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -26,6 +27,6 @@ public class University {
 	private President president;
 	
 	@OneToMany
-	private Set<Course> courses;
+	private Set<Course> courses = new HashSet<>();
 
 }

@@ -9,6 +9,6 @@ public interface UniversityService extends CrudService<University, Long>{
 	
 	University findByPresidentId(Long presidentId);
 	
-	Set<University> findByUserId(User user);
+	Set<University> findByUserId(Long userId);
 
 }

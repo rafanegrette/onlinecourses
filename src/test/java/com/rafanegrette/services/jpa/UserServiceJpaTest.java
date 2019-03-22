@@ -5,6 +5,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -21,6 +22,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.rafanegrette.model.Course;
 import com.rafanegrette.model.University;
 import com.rafanegrette.model.User;
+import com.rafanegrette.repositories.CourseRepository;
+import com.rafanegrette.repositories.UniversityRepository;
 import com.rafanegrette.repositories.UserRepository;
 import com.rafanegrette.services.jpa.UserServiceJpa;
 
@@ -32,6 +35,12 @@ class UserServiceJpaTest {
 	
 	@Mock
 	UserRepository userRepository;	
+	
+	@Mock
+	CourseRepository courseRepository;
+	
+	@Mock
+	UniversityRepository universityRepository;
 	
 	User user;
 	
@@ -106,33 +115,35 @@ class UserServiceJpaTest {
 	@Test
 	void testFindByCourseId() {		
 		Long courseId = 1l;
-		Course course = Course.builder().id(courseId).title("Calculus").build();		
+		Course course = Course.builder().id(courseId).title("Calculus").users(new HashSet<>()).build();		
 		Long userId2 = 2l;
-		User user2 = User.builder().id(userId2).userName("matilda").build();
-		user2.getCourses().add(course);
+		User user2 = User.builder().id(userId2).userName("matilda").courses(new HashSet<>()).build();
+		course.getUsers().add(user2);
 		
-		User user = User.builder().id(userId).userName(userName).build();
-		user.getCourses().add(course);
+		User user = User.builder().id(userId).userName(userName).courses(new HashSet<>()).build();
+		course.getUsers().add(user);
 		
-		userServiceJpa.edit(user);
-		userServiceJpa.edit(user2);
-		
+		when(courseRepository.findById(courseId)).thenReturn(Optional.of(course));
+				
 		assertEquals(2, userServiceJpa.findByCourseId(courseId).size());
 		//verify(userRepository, times(1))
 	}
 
 	@Test
-	@Disabled
 	void testFindByUniversityId() {
 		Long courseId = 1l;
-		Course course = Course.builder().id(courseId).title("Calculus").build();
-		University university = University.builder().id(1L).name("Universidad de La Guajira").build();
+		Course course = Course.builder().id(courseId).title("Calculus").users(new HashSet()).build();
+		University university = University.builder().id(2L).name("Universidad de La Guajira").courses(new HashSet<>()).build();
 		university.getCourses().add(course);
-		User user = User.builder().id(userId).userName(userName).build();
-		user.getCourses().add(course);
+		User user = User.builder().id(userId).userName(userName).courses(new HashSet<>()).build();
+		//user.getCourses().add(course);
+		course.getUsers().add(user);
 		
-		userServiceJpa.create(user);
+		when(universityRepository.findById(anyLong())).thenReturn(Optional.of(university));
+		Set<User> users = userServiceJpa.findByUniversityId(university.getId());
 		
+		assertNotNull(users);
+		assertEquals(1, users.size());
 		
 	}
 

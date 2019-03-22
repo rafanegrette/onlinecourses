@@ -1,5 +1,6 @@
 package com.rafanegrette.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -15,7 +16,7 @@ import lombok.EqualsAndHashCode;
 public class User extends Person{
 	
 	@ManyToMany(mappedBy = "users")
-	private Set<Course> courses;
+	private Set<Course> courses = new HashSet<>();
 
 	@Builder
 	public User(Long id, String userName, String firstName, String lastName, 

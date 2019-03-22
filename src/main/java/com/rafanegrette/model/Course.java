@@ -1,6 +1,7 @@
 package com.rafanegrette.model;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -35,6 +36,6 @@ public class Course {
 	@ManyToMany
 	@JoinTable(name = "course_users", joinColumns = @JoinColumn(name = "course_id"),
 				inverseJoinColumns = @JoinColumn(name = "user_id"))
-	private Set<User> users;
+	private Set<User> users = new HashSet<>();
 
 }
