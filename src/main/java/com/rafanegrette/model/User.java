@@ -9,9 +9,11 @@ import javax.persistence.ManyToMany;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
 @EqualsAndHashCode(callSuper=true)
+@NoArgsConstructor
 @Entity
 public class User extends Person{
 	

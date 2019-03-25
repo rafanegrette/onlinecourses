@@ -12,14 +12,15 @@ import javax.persistence.OneToOne;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @Entity
+@NoArgsConstructor
 public class University {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String country;
@@ -28,5 +29,17 @@ public class University {
 	
 	@OneToMany
 	private Set<Course> courses = new HashSet<>();
+
+	@Builder
+	public University(Long id, String name, String country, President president, Set<Course> courses) {
+		this.id = id;
+		this.name = name;
+		this.country = country;
+		this.president = president;
+		this.courses = courses;
+	}
+	
+	
+	
 
 }

@@ -17,14 +17,15 @@ import com.rafanegrette.model.User.UserBuilder;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@Builder
+@NoArgsConstructor
 @Entity
 public class Course {	
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
 	private String contentTable; 
@@ -38,4 +39,16 @@ public class Course {
 				inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private Set<User> users = new HashSet<>();
 
+	@Builder
+	public Course(Long id, String title, String contentTable, LocalDate release, University university,
+			Set<User> users) {
+		this.id = id;
+		this.title = title;
+		this.contentTable = contentTable;
+		this.release = release;
+		this.university = university;
+		this.users = users;
+	}
+
+	
 }

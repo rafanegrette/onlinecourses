@@ -10,4 +10,6 @@ import com.rafanegrette.model.User;
 public interface CourseRepository extends CrudRepository<Course, Long> {
 	
 	Set<Course> findByUsersIn(Set<User> users);
+	
+	Course findByTitle(String title);
 }
