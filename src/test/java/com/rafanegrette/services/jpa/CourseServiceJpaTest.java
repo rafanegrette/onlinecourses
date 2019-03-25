@@ -98,14 +98,14 @@ class CourseServiceJpaTest {
 	@Test
 	void testEdit() {
 		String newTitle = "Integration"; 
-		course.setTitle(title);
+		course.setTitle(newTitle);
 		
 		when(courseRepository.save(course)).thenReturn(course);
 		
 		Course savedCourse = courseServiceJpa.edit(course);
 		
 		assertNotNull(savedCourse);
-		assertEquals(title, savedCourse.getTitle());
+		assertEquals(newTitle, savedCourse.getTitle());
 		verify(courseRepository, times(1)).save(course);
 	}
 
