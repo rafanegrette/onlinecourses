@@ -32,5 +32,15 @@ class PresidentRepositoryIT {
 		
 		assertEquals(university.getId(), returnPresident.getUniversity().getId());
 	}
+	
+	@Test
+	void testFindByUserName() {
+		String userName = "MTESSIER";
+		String firstName = "Mark";
+		President president = presidentRepository.findByUserName(userName);
+		
+		assertNotNull(president);
+		assertEquals(president.getFirstName(), firstName);
+	}
 
 }

@@ -126,7 +126,6 @@ class UserServiceJpaTest {
 		when(courseRepository.findById(courseId)).thenReturn(Optional.of(course));
 				
 		assertEquals(2, userServiceJpa.findByCourseId(courseId).size());
-		//verify(userRepository, times(1))
 	}
 
 	@Test
@@ -145,6 +144,15 @@ class UserServiceJpaTest {
 		assertNotNull(users);
 		assertEquals(1, users.size());
 		
+	}	
+	
+	@Test 
+	void testFindByUseName(){
+		when(userRepository.findByUserName(userName)).thenReturn(user);
+		
+		User returnUser = userServiceJpa.findByUserName(userName);
+		
+		assertNotNull(returnUser);
+		assertEquals(userName, returnUser.getUserName());
 	}
-
 }

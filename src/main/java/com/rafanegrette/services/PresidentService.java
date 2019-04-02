@@ -12,4 +12,6 @@ public interface PresidentService extends CrudService<President,Long>{
 	
 	Set<President> findByUser(User user);
 
+	President findByUserName(String string);
+
 }

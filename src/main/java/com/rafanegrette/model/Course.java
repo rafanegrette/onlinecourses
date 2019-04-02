@@ -17,9 +17,11 @@ import com.rafanegrette.model.User.UserBuilder;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
+@EqualsAndHashCode(exclude = {"users"})
 @NoArgsConstructor
 @Entity
 public class Course {	

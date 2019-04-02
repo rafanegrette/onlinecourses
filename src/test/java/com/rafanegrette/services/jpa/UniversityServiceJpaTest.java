@@ -140,5 +140,18 @@ class UniversityServiceJpaTest {
 		assertNotNull(universitySet);
 		assertEquals(1, universitySet.size());
 	}
+	
+	@Test
+	void testFindByName() {
+		
+		when(universityRepo.findByName(universityName)).thenReturn(university);
+		
+		University returnedUniversity = universityServiceJpa.findByName(universityName);
+		
+		assertEquals(university.getId(), returnedUniversity.getId());
+		
+		verify(universityRepo, times(1)).findByName(any());
+		
+	}
 
 }

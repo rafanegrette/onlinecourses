@@ -2,6 +2,7 @@ package com.rafanegrette.repositories;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -55,6 +56,28 @@ class CourseRepositoryIT {
 		
 		assertNotNull(courses);
 		assertEquals(1, courses.size());
+	}
+	
+	@Test
+	void TestEditAll() {
+		Set<Course> courses = new HashSet<>(); 
+		courseRepository.findAll().forEach(course -> courses.add(course));
+		
+		courses.stream().forEach(course -> {
+			course.setRelease(LocalDate.now());
+		});
+		
+		courseRepository.saveAll(courses);
+		
+		Set<Course> returnCourses = new HashSet<>();
+		courseRepository.findAll().forEach(course -> returnCourses.add(course));
+		
+		assertNotNull(returnCourses);
+		returnCourses.stream().forEach(course -> {
+			assertNotNull(course.getRelease());
+		});
+		
+		
 	}
 
 }

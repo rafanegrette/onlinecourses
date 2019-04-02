@@ -12,9 +12,11 @@ import javax.persistence.OneToOne;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
+@EqualsAndHashCode(exclude = "courses")
 @Entity
 @NoArgsConstructor
 public class University {

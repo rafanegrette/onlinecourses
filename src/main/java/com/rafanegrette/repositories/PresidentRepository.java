@@ -8,4 +8,6 @@ import com.rafanegrette.model.University;
 public interface PresidentRepository extends CrudRepository<President, Long> {
 	
 	President findByUniversity(University university);
+
+	President findByUserName(String userName);
 }

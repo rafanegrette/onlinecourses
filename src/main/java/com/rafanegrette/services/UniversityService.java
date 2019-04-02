@@ -11,4 +11,6 @@ public interface UniversityService extends CrudService<University, Long>{
 	
 	Set<University> findByUserId(Long userId);
 
+	University findByName(String string);
+
 }

@@ -3,6 +3,8 @@ package com.rafanegrette.services.jpa;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.stereotype.Service;
+
 import com.rafanegrette.model.Course;
 import com.rafanegrette.model.University;
 import com.rafanegrette.model.User;
@@ -11,6 +13,7 @@ import com.rafanegrette.repositories.UniversityRepository;
 import com.rafanegrette.repositories.UserRepository;
 import com.rafanegrette.services.CourseService;
 
+@Service
 public class CourseServiceJpa implements CourseService {
 
 	private CourseRepository courseRepository;
@@ -30,7 +33,12 @@ public class CourseServiceJpa implements CourseService {
 	}
 
 	public Set<Course> findAll() {
-		return (Set<Course>) courseRepository.findAll();
+		Set<Course> courses = new HashSet<>();
+		courseRepository.findAll().forEach(course -> {
+			courses.add(course);
+		});
+		
+		return courses;
 	}
 
 	public Course create(Course object) {		
@@ -60,6 +68,17 @@ public class CourseServiceJpa implements CourseService {
 			return user.getCourses();
 		else
 			return new HashSet<Course>();
+	}
+
+	@Override
+	public Course findByTitle(String title) {		
+		return courseRepository.findByTitle(title);
+	}
+
+	@Override
+	public void editAll(Set<Course> courses) {
+		courseRepository.saveAll(courses);
+		
 	}
 
 }

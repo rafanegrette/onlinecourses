@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
 import com.rafanegrette.model.Course;
 import com.rafanegrette.model.President;
 import com.rafanegrette.model.University;
@@ -14,6 +16,7 @@ import com.rafanegrette.repositories.UniversityRepository;
 import com.rafanegrette.repositories.UserRepository;
 import com.rafanegrette.services.PresidentService;
 
+@Service
 public class PresidentServiceJpa implements PresidentService {
 
 	private final PresidentRepository presidentRepo;
@@ -61,6 +64,12 @@ public class PresidentServiceJpa implements PresidentService {
 		Set<President> presidents = universities.stream().map(uni -> uni.getPresident()).collect(Collectors.toSet());
 		
 		return presidents;
+	}
+
+	@Override
+	public President findByUserName(String string) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

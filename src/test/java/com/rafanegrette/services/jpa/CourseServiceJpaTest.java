@@ -19,6 +19,8 @@ import java.util.Set;
 
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.anyCollection;
 
 import com.rafanegrette.model.Course;
 import com.rafanegrette.model.University;
@@ -145,4 +147,26 @@ class CourseServiceJpaTest {
 		assertEquals(1, courseSet.size());
 	}
 
+	@Test
+	void testFindByTitle() {
+		
+		when(courseRepository.findByTitle(anyString())).thenReturn(course);
+		Course returnCourse = courseServiceJpa.findByTitle(title);
+		
+		assertEquals(course.getId(), returnCourse.getId());
+		verify(courseRepository, times(1)).findByTitle(anyString());
+	}
+	
+	@Test
+	void testEditAll() {
+		Course course1 = Course.builder().id(1l).title("Calculus").users(new HashSet<>()).build();
+		Course course2 = Course.builder().id(2l).title("Physics").users(new HashSet<>()).build();
+		Set<Course> courses= new HashSet<>();
+		courses.add(course1);
+		courses.add(course2);
+		
+		courseServiceJpa.editAll(courses);
+		
+		verify(courseRepository, times(1)).saveAll(anyCollection());
+	}
 }

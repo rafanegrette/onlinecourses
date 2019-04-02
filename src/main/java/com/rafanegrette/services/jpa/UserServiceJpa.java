@@ -68,4 +68,12 @@ public class UserServiceJpa implements UserService {
 		return userSet;		
 	}
 
+	@Override
+	public User findByUserName(String userName) {
+		
+		return userRepository.findByUserName(userName);
+	}
+
+
+
 }

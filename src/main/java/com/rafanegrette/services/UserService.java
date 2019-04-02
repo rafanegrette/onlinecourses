@@ -10,4 +10,6 @@ public interface UserService extends CrudService<User, Long>{
 	
 	Set<User> findByUniversityId(Long universityId);
 
+	User findByUserName(String userName);
+
 }

@@ -5,6 +5,8 @@ import java.util.Set;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
 import com.rafanegrette.model.President;
 import com.rafanegrette.model.University;
 import com.rafanegrette.model.User;
@@ -13,6 +15,7 @@ import com.rafanegrette.repositories.UniversityRepository;
 import com.rafanegrette.repositories.UserRepository;
 import com.rafanegrette.services.UniversityService;
 
+@Service
 public class UniversityServiceJpa implements UniversityService {
 
 	private UniversityRepository universityRepository;	
@@ -63,6 +66,12 @@ public class UniversityServiceJpa implements UniversityService {
 			universitySet = user.getCourses().stream().map(course -> course.getUniversity()).collect(Collectors.toSet());
 		} 
 		return universitySet;
+	}
+
+	@Override
+	public University findByName(String name) {
+
+		return universityRepository.findByName(name);
 	}
 
 }
