@@ -124,7 +124,7 @@ class PresidentServiceJpaTest {
 	}
 
 	@Test
-	void testFindByUser() {
+	void testFindByUsers() {
 		
 		Course course = Course.builder().id(1L).title("Calculus").build();
 		University university = University.builder().id(1L).name("stanford").president(president).build();

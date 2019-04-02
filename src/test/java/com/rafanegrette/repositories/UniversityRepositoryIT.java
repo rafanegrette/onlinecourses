@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.rafanegrette.model.President;
 import com.rafanegrette.model.University;
 
 @ExtendWith(SpringExtension.class)
@@ -17,17 +18,36 @@ public class UniversityRepositoryIT {
 	
 	@Autowired
 	private UniversityRepository universityRepo;
-
+	@Autowired
+	private PresidentRepository presidentRepository;
+	
+	String universityName = "stanford";
+	String presidentUserName = "MTESSIER";
+	
 	@Test
 	void testFindByName() {
-		String name = "stanford";
 		
-		University university = universityRepo.findByName(name);
+		
+		University university = universityRepo.findByName(universityName);
 		
 		assertNotNull(university);
-		assertEquals(name, university.getName());
+		assertEquals(universityName, university.getName());
 		
 		
+	}
+	
+	@Test
+	void testEditPresident() {
+		University university = universityRepo.findByName(universityName);
+		President president = presidentRepository.findByUserName(presidentUserName);
+		university.setPresident(president);
+		
+		universityRepo.save(university);
+		
+		University returnUniversity = universityRepo.findByName(universityName);
+		
+		assertNotNull(returnUniversity);
+		assertNotNull(returnUniversity.getPresident());
 	}
 
 }
