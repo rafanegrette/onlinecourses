@@ -1,5 +1,6 @@
 package com.rafanegrette.bootstrap;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.context.ApplicationListener;
@@ -58,8 +59,13 @@ public class OnlinecoursesBootstrap implements ApplicationListener<ContextRefres
 		Set<Course> courses = courseService.findAll(); 
 		String userName = "ralph";
 		User student = userService.findByUserName(userName);
-		student.setCourses(courses);
-		
+		student.setCourses(courses);		
+		Set<User> users = new HashSet<>();
+		users.add(student);
+		courses.forEach(course -> {
+			course.setUsers(users);
+			courseService.edit(course);
+		});
 		userService.edit(student);
 		
 	}

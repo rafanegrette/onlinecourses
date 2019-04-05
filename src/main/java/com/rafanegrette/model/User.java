@@ -3,6 +3,7 @@ package com.rafanegrette.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
@@ -17,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class User extends Person{
 	
-	@ManyToMany(mappedBy = "users")
+	@ManyToMany(mappedBy = "users",cascade = CascadeType.ALL)
 	private Set<Course> courses = new HashSet<>();
 
 	@Builder
