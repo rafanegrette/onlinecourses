@@ -6,6 +6,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -41,10 +42,11 @@ class PresidentServiceJpaTest {
 	
 	final Long presidentId = 1L;
 	final String lastName = "Tessier-Lavigne";
-
+	final String userName = "MTESSIER";
+	
 	@BeforeEach
 	void setUp() throws Exception {
-		president = President.builder().id(presidentId).lastName(lastName).build();
+		president = President.builder().id(presidentId).lastName(lastName).userName(userName).build();
 	}
 
 	@Test
@@ -140,6 +142,15 @@ class PresidentServiceJpaTest {
 		
 		assertNotNull(presidentSet);
 		assertEquals(1, presidentSet.size());
+	}
+	
+	@Test
+	void testFindByUserName() {
+		when(presidentRepo.findByUserName(anyString())).thenReturn(president);
+		President returnedPresident = presidentServiceJpa.findByUserName(userName);
+		
+		assertNotNull(returnedPresident);
+		assertEquals(userName,returnedPresident.getUserName());
 	}
 
 }

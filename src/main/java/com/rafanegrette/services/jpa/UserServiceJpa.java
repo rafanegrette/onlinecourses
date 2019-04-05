@@ -2,7 +2,6 @@ package com.rafanegrette.services.jpa;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 

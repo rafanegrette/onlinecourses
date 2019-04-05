@@ -55,7 +55,6 @@ public class OnlinecoursesBootstrap implements ApplicationListener<ContextRefres
 
 
 	private void setUsersToCourses() {
-		String title = "Calculus";
 		Set<Course> courses = courseService.findAll(); 
 		String userName = "ralph";
 		User student = userService.findByUserName(userName);

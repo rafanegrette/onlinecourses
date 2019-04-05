@@ -12,8 +12,6 @@ import com.rafanegrette.model.University;
 import com.rafanegrette.model.User;
 import com.rafanegrette.repositories.CourseRepository;
 import com.rafanegrette.repositories.PresidentRepository;
-import com.rafanegrette.repositories.UniversityRepository;
-import com.rafanegrette.repositories.UserRepository;
 import com.rafanegrette.services.PresidentService;
 
 @Service
@@ -67,9 +65,8 @@ public class PresidentServiceJpa implements PresidentService {
 	}
 
 	@Override
-	public President findByUserName(String string) {
-		// TODO Auto-generated method stub
-		return null;
+	public President findByUserName(String userName) {		
+		return presidentRepo.findByUserName(userName);
 	}
 
 }

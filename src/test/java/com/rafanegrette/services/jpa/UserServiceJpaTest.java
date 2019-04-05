@@ -12,7 +12,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -131,7 +130,7 @@ class UserServiceJpaTest {
 	@Test
 	void testFindByUniversityId() {
 		Long courseId = 1l;
-		Course course = Course.builder().id(courseId).title("Calculus").users(new HashSet()).build();
+		Course course = Course.builder().id(courseId).title("Calculus").users(new HashSet<User>()).build();
 		University university = University.builder().id(2L).name("Universidad de La Guajira").courses(new HashSet<>()).build();
 		university.getCourses().add(course);
 		User user = User.builder().id(userId).userName(userName).courses(new HashSet<>()).build();
